@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pay by transfer | KSR Foods</title><link rel="stylesheet" href="css/styles.css">
+<style>.box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0;text-align:left}
+.r{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+.r:last-child{border:0}.r button{border:1px solid var(--line);background:#fff;border-radius:6px;padding:4px 10px;cursor:pointer}
+.big{font-size:1.4rem;font-weight:800;color:var(--red)}</style></head>
+<body>
+<header class="site-header"><a class="brand" href="/"><img src="assets/images/logo.jpeg" alt=""><span>KSR Foods</span></a></header>
+<main class="container" style="max-width:560px;text-align:center">
+  <h1>Pay by bank transfer</h1>
+  <p id="intro">Loading your order...</p>
+  <div class="box" id="details" hidden></div>
+  <p id="warn" hidden><strong>Important:</strong> put the reference in your transfer narration/remark so we can match your payment.</p>
+  <button class="btn block" id="paidBtn" hidden>I've made the transfer</button>
+  <a class="btn block wa" id="waBtn" target="_blank" rel="noopener" hidden style="margin-top:10px">Send receipt on WhatsApp</a>
+  <p style="margin-top:20px"><a href="/">Back to shop</a></p>
+</main>
+<script>
+const WA = "2348077029452";
+const ref = new URLSearchParams(location.search).get("reference");
+const $ = id => document.getElementById(id);
+const naira = n => "₦" + Number(n).toLocaleString("en-NG");
+
+function row(label, value, copy) {
+  const d = document.createElement("div"); d.className = "r";
+  const l = document.createElement("span"); l.textContent = label;
+  const v = document.createElement("strong"); v.textContent = value; if (label === "Amount") v.className = "big";
+  d.append(l, v);
+  if (copy) { const b = document.createElement("button"); b.textContent = "Copy";
+    b.onclick = () => navigator.clipboard.writeText(copy).then(() => { b.textContent = "Copied"; setTimeout(() => b.textContent = "Copy", 1200); }); d.append(b); }
+  return d;
+}
+function waLink(o) {
+  const msg = `Hello KSR Foods, I have paid ${naira(o.total)} by transfer for order ${o.reference}. Receipt attached.`;
+  $("waBtn").href = `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`; $("waBtn").hidden = false;
+}
+(async () => {
+  try {
+    const r = await fetch("/api/orders/transfer/" + encodeURIComponent(ref));
+    if (!r.ok) throw 0;
+    const o = await r.json();
+    $("details").hidden = false;
+    $("details").append(row("Amount", naira(o.total), String(o.total)), row("Bank", o.bank.name), row("Account number", o.bank.number, o.bank.number),
+      row("Account name", o.bank.accountName), row("Reference (narration)", o.reference, o.reference));
+    if (o.status === "awaiting_transfer") {
+      $("intro").textContent = "Transfer the exact amount below, then tap the button.";
+      $("warn").hidden = false; $("paidBtn").hidden = false;
+    } else if (o.status === "transfer_reported") {
+      $("intro").textContent = "Thanks! We've been notified and will confirm your payment shortly."; waLink(o);
+    } else $("intro").textContent = "Order status: " + o.status.replace("_", " ") + ".";
+    $("paidBtn").onclick = async () => {
+      await fetch(`/api/orders/transfer/${encodeURIComponent(ref)}/reported`, { method: "POST" });
+      $("paidBtn").hidden = true; $("warn").hidden = true;
+      $("intro").textContent = "Thanks! We'll confirm your payment shortly. Sending your receipt on WhatsApp speeds things up."; waLink(o);
+    };
+  } catch (e) { $("intro").textContent = "Order not found. Please contact us on WhatsApp 0807 702 9452."; }
+})();
+</script></body></html>

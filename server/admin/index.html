@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KSR Admin</title>
+<style>
+body{font-family:system-ui,sans-serif;margin:0;background:#faf8f3;color:#1d2a22}
+header{background:#0b6b3a;color:#fff;padding:14px 20px;display:flex;gap:16px;align-items:center}
+header button{background:#fff3;border:0;color:#fff;padding:8px 14px;border-radius:8px;cursor:pointer}
+header button.on{background:#f08a1c}
+main{max-width:1000px;margin:0 auto;padding:20px}
+.box{background:#fff;border:1px solid #e6e2d8;border-radius:12px;padding:14px;margin-bottom:12px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.tag{padding:2px 10px;border-radius:999px;font-size:.8rem;background:#eee}
+.tag.paid{background:#d6f5df}.tag.pending{background:#fff1c2}.tag.delivered{background:#cfe3ff}.tag.transfer_reported{background:#ffd9a8;font-weight:700}.tag.awaiting_transfer{background:#fff1c2}.tag.cancelled{background:#fcd5d5}
+input[type=number]{width:100px;padding:6px}
+button.save{background:#0b6b3a;color:#fff;border:0;padding:6px 12px;border-radius:6px;cursor:pointer}
+small{color:#5b685f}
+</style></head>
+<body>
+<header><strong>KSR Foods Admin</strong>
+  <button id="tabOrders" class="on">Orders</button><button id="tabProducts">Products &amp; prices</button></header>
+<main id="view"></main>
+<script src="admin.js"></script>
+</body></html>

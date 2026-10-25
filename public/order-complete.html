@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Order status | KSR Foods</title><link rel="stylesheet" href="css/styles.css"></head>
+<body>
+<header class="site-header"><a class="brand" href="/"><img src="assets/images/logo.jpeg" alt=""><span>KSR Foods</span></a></header>
+<main class="container" style="max-width:560px;text-align:center">
+  <h1 id="title">Checking your payment...</h1>
+  <p id="msg"></p>
+  <p style="margin-top:20px"><a class="btn" href="/">Back to shop</a></p>
+</main>
+<script>
+(async () => {
+  const ref = new URLSearchParams(location.search).get("reference");
+  const t = document.getElementById("title"), m = document.getElementById("msg");
+  if (!ref) { t.textContent = "No order found"; return; }
+  try {
+    const r = await fetch("/api/orders/verify/" + encodeURIComponent(ref));
+    const o = await r.json();
+    if (o.status === "paid") {
+      t.textContent = "Payment received. Thank you!";
+      m.textContent = `Order ${o.reference} (₦${o.total.toLocaleString("en-NG")}) is confirmed. We'll contact you about delivery.`;
+      try { localStorage.removeItem("ksr-cart-v1"); } catch (e) {}
+    } else {
+      t.textContent = "Payment not confirmed";
+      m.textContent = `Order ${ref} is "${o.status || "unknown"}". If you were debited, message us on WhatsApp 0807 702 9452 with this reference.`;
+    }
+  } catch (e) { t.textContent = "Could not check payment"; m.textContent = "Please contact us on WhatsApp with your reference: " + ref; }
+})();
+</script></body></html>

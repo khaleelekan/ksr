@@ -1,0 +1,405 @@
+{
+  "CATEGORIES": [
+    "All",
+    "Poundo & Flours",
+    "Rice & Grains",
+    "Beans",
+    "Oils",
+    "Honey",
+    "Garri"
+  ],
+  "PRODUCTS": [
+    {
+      "id": "rice-poundo",
+      "name": "Rice Poundo",
+      "category": "Poundo & Flours",
+      "image": "rice-poundo.jpeg",
+      "desc": "Rich in fibre, gluten free, vitamins enriched.",
+      "variants": [
+        {
+          "label": "1.5kg",
+          "price": 4500
+        },
+        {
+          "label": "2.5kg",
+          "price": 8000
+        },
+        {
+          "label": "5kg",
+          "price": 16000
+        }
+      ]
+    },
+    {
+      "id": "plantain-poundo",
+      "name": "Unripe Plantain Rice Poundo",
+      "category": "Poundo & Flours",
+      "image": "plantain-poundo.jpeg",
+      "desc": "Rich in fibre, gluten free, vitamins enriched.",
+      "variants": [
+        {
+          "label": "1.3kg",
+          "price": 4500
+        },
+        {
+          "label": "2.5kg",
+          "price": 8800
+        },
+        {
+          "label": "5kg",
+          "price": 17500
+        }
+      ]
+    },
+    {
+      "id": "corn-cassava-poundo",
+      "name": "Corn/Cassava Poundo (CornVita)",
+      "category": "Poundo & Flours",
+      "variants": [
+        {
+          "label": "1kg",
+          "price": 3000
+        },
+        {
+          "label": "2kg",
+          "price": 6000
+        },
+        {
+          "label": "5kg",
+          "price": 14500
+        }
+      ]
+    },
+    {
+      "id": "plantain-flour",
+      "name": "Unripe Plantain Flour",
+      "category": "Poundo & Flours",
+      "image": "plantain-flour.jpeg",
+      "variants": [
+        {
+          "label": "1kg",
+          "price": 5000
+        },
+        {
+          "label": "2kg",
+          "price": 10000
+        },
+        {
+          "label": "5kg",
+          "price": 24000
+        }
+      ]
+    },
+    {
+      "id": "elubo-isu",
+      "name": "Elubo Isu Gbodo (Àmàlà)",
+      "category": "Poundo & Flours",
+      "image": "yam-flour.jpeg",
+      "desc": "Yam flour.",
+      "variants": [
+        {
+          "label": "1kg",
+          "price": 4500
+        },
+        {
+          "label": "2kg",
+          "price": 9000
+        },
+        {
+          "label": "5kg",
+          "price": 22000
+        }
+      ]
+    },
+    {
+      "id": "pupuru",
+      "name": "Pupuru Ikale",
+      "category": "Poundo & Flours",
+      "variants": [
+        {
+          "label": "1kg",
+          "price": 3000
+        },
+        {
+          "label": "2kg",
+          "price": 6000
+        },
+        {
+          "label": "5kg",
+          "price": 13000
+        }
+      ]
+    },
+    {
+      "id": "oat-flour",
+      "name": "Oat Flour",
+      "category": "Poundo & Flours",
+      "variants": [
+        {
+          "label": "1kg",
+          "price": 5000
+        },
+        {
+          "label": "2kg",
+          "price": 10000
+        },
+        {
+          "label": "5kg",
+          "price": 24000
+        }
+      ]
+    },
+    {
+      "id": "oat-flakes",
+      "name": "Oat Flakes",
+      "category": "Poundo & Flours",
+      "variants": [
+        {
+          "label": "1kg",
+          "price": 5000
+        },
+        {
+          "label": "2kg",
+          "price": 10000
+        },
+        {
+          "label": "5kg",
+          "price": 24000
+        }
+      ]
+    },
+    {
+      "id": "egbo",
+      "name": "Egbo (Corn Meal)",
+      "category": "Poundo & Flours",
+      "variants": [
+        {
+          "label": "Standard pack",
+          "price": 3000
+        }
+      ]
+    },
+    {
+      "id": "ofada",
+      "name": "Ofada Rice",
+      "category": "Rice & Grains",
+      "image": "ofada-rice.jpeg",
+      "variants": [
+        {
+          "label": "1kg",
+          "price": 5000
+        },
+        {
+          "label": "2kg",
+          "price": 10000
+        },
+        {
+          "label": "5kg",
+          "price": 25000
+        }
+      ]
+    },
+    {
+      "id": "peeled-beans",
+      "name": "Peeled Beans",
+      "category": "Beans",
+      "variants": [
+        {
+          "label": "1kg",
+          "price": 5000
+        }
+      ]
+    },
+    {
+      "id": "beans-flour",
+      "name": "Beans Flour",
+      "category": "Beans",
+      "variants": [
+        {
+          "label": "1kg",
+          "price": 5000
+        }
+      ]
+    },
+    {
+      "id": "honey-beans",
+      "name": "Honey Beans",
+      "category": "Beans",
+      "image": "honey-beans.jpeg",
+      "variants": [
+        {
+          "label": "Standard pack",
+          "price": 4500
+        }
+      ]
+    },
+    {
+      "id": "white-beans",
+      "name": "White Beans",
+      "category": "Beans",
+      "variants": [
+        {
+          "label": "Bag / paint bucket",
+          "price": null
+        }
+      ]
+    },
+    {
+      "id": "bendel-palm-oil",
+      "name": "Bendel Palm Oil",
+      "category": "Oils",
+      "image": "palm-oil-5l.jpeg",
+      "desc": "Pure palm fruits.",
+      "variants": [
+        {
+          "label": "1 litre",
+          "price": 3000
+        },
+        {
+          "label": "2 litres",
+          "price": 6000
+        },
+        {
+          "label": "3 litres",
+          "price": 9000
+        },
+        {
+          "label": "5 litres",
+          "price": 15000
+        }
+      ]
+    },
+    {
+      "id": "bleached-palm-oil",
+      "name": "Bleached Palm Oil",
+      "category": "Oils",
+      "image": "bleached-palm-oil.jpeg",
+      "desc": "For Ofada sauce (ayamase), stew and sauce.",
+      "variants": [
+        {
+          "label": "5 litres",
+          "price": null
+        }
+      ]
+    },
+    {
+      "id": "soya-oil",
+      "name": "Angoz Soya Bean Oil",
+      "category": "Oils",
+      "image": "angoz-boxes.jpeg",
+      "desc": "100% cholesterol free. Rich in Omega 3 & 6, enriched with Vitamin A & E.",
+      "variants": [
+        {
+          "label": "1 litre",
+          "price": 4000
+        },
+        {
+          "label": "3 litres",
+          "price": 11500
+        },
+        {
+          "label": "5 litres",
+          "price": 19000
+        }
+      ]
+    },
+    {
+      "id": "groundnut-oil",
+      "name": "Cold Pressed Groundnut Oil",
+      "category": "Oils",
+      "variants": [
+        {
+          "label": "1 litre",
+          "price": 7000
+        },
+        {
+          "label": "2 litres",
+          "price": 14000
+        },
+        {
+          "label": "3 litres",
+          "price": 21000
+        },
+        {
+          "label": "5 litres",
+          "price": 36000
+        }
+      ]
+    },
+    {
+      "id": "raw-honey",
+      "name": "Pure Raw Honey",
+      "category": "Honey",
+      "image": "honey-500ml.jpeg",
+      "variants": [
+        {
+          "label": "250ml",
+          "price": 3500
+        },
+        {
+          "label": "500ml",
+          "price": 6000
+        },
+        {
+          "label": "1 litre",
+          "price": 11000
+        }
+      ]
+    },
+    {
+      "id": "processed-honey",
+      "name": "Processed Honey",
+      "category": "Honey",
+      "image": "honey-group.jpeg",
+      "variants": [
+        {
+          "label": "330ml",
+          "price": 3000
+        }
+      ]
+    },
+    {
+      "id": "ijebu-garri",
+      "name": "Ìjèbú Garri (Special)",
+      "category": "Garri",
+      "variants": [
+        {
+          "label": "1kg",
+          "price": 2000
+        },
+        {
+          "label": "2kg",
+          "price": 4000
+        },
+        {
+          "label": "5kg",
+          "price": 10000
+        }
+      ]
+    },
+    {
+      "id": "bendel-garri",
+      "name": "Bendel Garri",
+      "category": "Garri",
+      "variants": [
+        {
+          "label": "1kg",
+          "price": 2000
+        },
+        {
+          "label": "2kg",
+          "price": 4000
+        },
+        {
+          "label": "5kg",
+          "price": 10000
+        }
+      ]
+    }
+  ],
+  "STORE_NOTES": [
+    "Garri is also available in paints and bags.",
+    "Beans prices change often due to market fluctuation; available in bags and paint buckets.",
+    "All prices are subject to change at the point of payment."
+  ]
+}
