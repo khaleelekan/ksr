@@ -1,23 +1,212 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>KSR Admin</title>
+<meta name="theme-color" content="#0b6b3a">
 <style>
-body{font-family:system-ui,sans-serif;margin:0;background:#faf8f3;color:#1d2a22}
-header{background:#0b6b3a;color:#fff;padding:14px 20px;display:flex;gap:16px;align-items:center}
-header button{background:#fff3;border:0;color:#fff;padding:8px 14px;border-radius:8px;cursor:pointer}
-header button.on{background:#f08a1c}
-main{max-width:1000px;margin:0 auto;padding:20px}
-.box{background:#fff;border:1px solid #e6e2d8;border-radius:12px;padding:14px;margin-bottom:12px}
-.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.tag{padding:2px 10px;border-radius:999px;font-size:.8rem;background:#eee}
-.tag.paid{background:#d6f5df}.tag.pending{background:#fff1c2}.tag.delivered{background:#cfe3ff}.tag.transfer_reported{background:#ffd9a8;font-weight:700}.tag.awaiting_transfer{background:#fff1c2}.tag.cancelled{background:#fcd5d5}
-input[type=number]{width:100px;padding:6px}
-button.save{background:#0b6b3a;color:#fff;border:0;padding:6px 12px;border-radius:6px;cursor:pointer}
-small{color:#5b685f}
-</style></head>
+  :root {
+    --green: #0b6b3a;
+    --green-dark: #0a5c32;
+    --red: #e2412b;
+    --orange: #f08a1c;
+    --bg: #faf8f3;
+    --ink: #1d2a22;
+    --muted: #5b685f;
+    --card: #fff;
+    --line: #e6e2d8;
+    --focus: 0 0 0 3px rgba(11, 107, 58, .35);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, .06);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :where(button, input, select, textarea, a):focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 2px;
+    box-shadow: var(--focus);
+  }
+
+  /* ---------- Header / tabs ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--green);
+    color: #fff;
+    padding: 12px 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+  }
+  header strong {
+    margin-right: auto;
+    font-size: 1.05rem;
+    letter-spacing: .01em;
+  }
+
+  header button {
+    background: rgba(255, 255, 255, .18);
+    border: 1px solid rgba(255, 255, 255, .25);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+    font-size: .9rem;
+    transition: background .15s ease, border-color .15s ease;
+  }
+  header button:hover { background: rgba(255, 255, 255, .28); }
+  header button.on {
+    background: var(--orange);
+    border-color: var(--orange);
+  }
+  header button.on:hover { background: #d97c14; }
+
+  /* ---------- Layout ---------- */
+  main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .box {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  h2 {
+    font-size: 1.05rem;
+    margin: 8px 0 12px;
+    letter-spacing: .01em;
+  }
+
+  /* ---------- Status tags ---------- */
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: .8rem;
+    font-weight: 600;
+    background: #eee;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .tag.paid              { background: #d6f5df; color: #0a5c32; }
+  .tag.pending           { background: #fff1c2; color: #7a5c00; }
+  .tag.delivered         { background: #cfe3ff; color: #1e4a8a; }
+  .tag.transfer_reported { background: #ffd9a8; color: #7a3e00; font-weight: 700; }
+  .tag.awaiting_transfer { background: #fff1c2; color: #7a5c00; }
+  .tag.cancelled         { background: #fcd5d5; color: #8a1a1a; }
+  .tag.processing        { background: #e3d9ff; color: #4a2d99; }
+
+  /* ---------- Inputs ---------- */
+  input[type=number],
+  input[type=text],
+  input[type=search] {
+    width: 100px;
+    padding: 6px 8px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    font: inherit;
+    font-size: .9rem;
+    color: var(--ink);
+    background: #fff;
+    transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  input:focus {
+    outline: none;
+    border-color: var(--green);
+    box-shadow: var(--focus);
+  }
+
+  select {
+    padding: 6px 10px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    font: inherit;
+    font-size: .88rem;
+    background: #fff;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  select:focus {
+    outline: none;
+    border-color: var(--green);
+    box-shadow: var(--focus);
+  }
+
+  /* ---------- Save button ---------- */
+  button.save {
+    background: var(--green);
+    color: #fff;
+    border: 0;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+    font-size: .88rem;
+    transition: background .15s ease, transform .1s ease;
+  }
+  button.save:hover  { background: var(--green-dark); }
+  button.save:active { transform: translateY(1px); }
+  button.save:disabled { opacity: .6; cursor: wait; }
+
+  small {
+    color: var(--muted);
+    font-size: .82rem;
+  }
+
+  /* ---------- Empty / loading state ---------- */
+  .empty {
+    text-align: center;
+    color: var(--muted);
+    padding: 32px 12px;
+    font-size: .95rem;
+  }
+
+  @media (max-width: 480px) {
+    header strong { font-size: 1rem; }
+    main { padding: 14px; }
+    input[type=number] { width: 80px; }
+  }
+</style>
+</head>
 <body>
-<header><strong>KSR Foods Admin</strong>
-  <button id="tabOrders" class="on">Orders</button><button id="tabProducts">Products &amp; prices</button></header>
-<main id="view"></main>
+
+<header>
+  <strong>KSR Foods Admin</strong>
+  <button id="tabOrders"   class="on" type="button" role="tab" aria-selected="true"  aria-controls="view">Orders</button>
+  <button id="tabProducts"          type="button" role="tab" aria-selected="false" aria-controls="view">Products &amp; prices</button>
+</header>
+
+<main id="view" role="tabpanel" aria-live="polite"></main>
+
 <script src="admin.js"></script>
-</body></html>
+</body>
+</html>
